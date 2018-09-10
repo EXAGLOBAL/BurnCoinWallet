@@ -1,0 +1,5 @@
+BurnCoin-qt usr/bin
+share/pixmaps/BurnCoin32.xpm usr/share/pixmaps
+share/pixmaps/BurnCoin80.xpm usr/share/pixmaps
+debian/BurnCoin-qt.desktop usr/share/applications
+debian/BurnCoin-qt.protocol usr/share/kde4/services/

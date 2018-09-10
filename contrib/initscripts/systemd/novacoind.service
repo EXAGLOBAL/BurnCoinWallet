@@ -1,0 +1,11 @@
+[Unit]
+Description=BurnCoin daemon serivce
+After=network.target
+
+[Service]
+Type=simple
+User=BurnCoin
+ExecStart=/opt/BurnCoin/BurnCoind
+
+[Install]
+WantedBy=multi-user.target

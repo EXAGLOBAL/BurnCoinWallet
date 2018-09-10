@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=BurnCoin
+Comment=BurnCoin P2P Cryptocurrency
+Comment[ru]=BurnCoin, P2P криптовалюта
+Comment[fr]=BurnCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=BurnCoin, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/BurnCoin-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/BurnCoin80.xpm
+MimeType=x-scheme-handler/BurnCoin;
+Categories=Office;

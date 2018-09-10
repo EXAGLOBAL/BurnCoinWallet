@@ -1,0 +1,2 @@
+debian/bin/BurnCoind usr/bin
+src/BurnCoind usr/lib/BurnCoin

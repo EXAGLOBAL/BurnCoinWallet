@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# PROVIDE: BurnCoin
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# BurnCoin_enable (bool): Set to NO by default. Set this variable to YES if you want to enable BurnCoin service.
+# BurnCoin_config (path): Set to /usr/local/etc/BurnCoin.conf by default.
+# BurnCoin_user:  The user account BurnCoin daemon runs as. It uses 'root' user by default.
+# BurnCoin_group: The group account BurnCoin daemon runs as. It uses 'wheel' group by default.
+# BurnCoin_datadir (str): Default to "/var/db/BurnCoin". Base data directory.
+
+. /etc/rc.subr
+
+name=BurnCoin
+rcvar=BurnCoin_enable
+
+: ${BurnCoin_enable:=NO}
+: ${BurnCoin_config=/usr/local/etc/BurnCoin.conf}
+: ${BurnCoin_datadir=/var/db/BurnCoin}
+: ${BurnCoin_user="root"}
+: ${BurnCoin_group="wheel"}
+
+required_files=${BurnCoin_config}
+command=/usr/local/bin/BurnCoind
+BurnCoin_chdir=${BurnCoin_datadir}
+pidfile="${BurnCoin_datadir}/BurnCoind.pid"
+stop_cmd=BurnCoin_stop
+command_args="-conf=${BurnCoin_config} -datadir=${BurnCoin_datadir} -daemon -pid=${pidfile}"
+start_precmd="${name}_prestart"
+
+BurnCoin_create_datadir()
+{
+	echo "Creating data directory"
+	eval mkdir -p ${BurnCoin_datadir}
+	[ $? -eq 0 ] && chown -R ${BurnCoin_user}:${BurnCoin_group} ${BurnCoin_datadir}
+}
+
+BurnCoin_prestart()
+{
+	if [ ! -d "${BurnCoin_datadir}/." ]; then
+		BurnCoin_create_datadir || return 1
+	fi
+}
+
+BurnCoin_requirepidfile()
+{
+	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
+		echo "${name} not running? (check $pidfile)."
+		exit 1
+	fi
+}
+
+BurnCoin_stop()
+{
+    BurnCoin_requirepidfile
+
+	echo "Stopping ${name}."
+	eval ${command} -conf=${BurnCoin_config} -datadir=${BurnCoin_datadir} stop
+	wait_for_pids ${rc_pid}
+}
+
+load_rc_config $name
+run_rc_command "$1"

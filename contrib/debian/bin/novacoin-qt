@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+umask 077
+
+basedir=~/.BurnCoin
+dbfile="$basedir/DB_CONFIG"
+cfgfile="$basedir/BurnCoin.conf"
+
+[ -e "$basedir" ] || mkdir "$basedir"
+
+# BurnCoin does not clean up DB log files by default
+[ -e "$dbfile" ] || echo 'set_flags DB_LOG_AUTOREMOVE' > "$dbfile"
+
+exec /usr/lib/BurnCoin/BurnCoin-qt "$@"
