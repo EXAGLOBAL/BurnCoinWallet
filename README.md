@@ -4,7 +4,7 @@
 - Network Port: 15493
 
 ## 2. Build - Unix/Linux
-Dependent libraries: libboost-all-dev, libminiupnpc-dev
+Dependent libraries: Boost, BDB, OpenSSL, MINIUPNPC, QRENCODE
 - cd src  
 - make -f makefile.unix clean
 - mkdir obj   // if not exist.
