@@ -1056,6 +1056,8 @@ CBigNum inline GetProofOfStakeLimit(int nHeight, unsigned int nTime)
 int64_t GetProofOfWorkReward(unsigned int nBits, int64_t nFees, int nHeight)
 {
     int64_t nSubsidy = 200 * COIN;
+    if(nHeight > 28952)
+        nSubsidy = 10 * COIN;
     
 	if (nHeight == 2)
 		return 200000000 * COIN;

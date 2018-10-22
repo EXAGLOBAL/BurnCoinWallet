@@ -4,10 +4,11 @@
 - Network Port: 15493
 
 ## 2. Build - Unix/Linux
+Dependent libraries: libboost-all-dev, libminiupnpc-dev
 - cd src  
-- \rm -rf obj      // Delete object directory, if exists.  
-- mkdir obj        // Create it back.  
-- make -j2 -f makefile.unix
+- make -f makefile.unix clean
+- mkdir obj   // if not exist.
+- make -f makefile.unix
 
 
 You can find BurnCoind file in the same directory.
@@ -38,5 +39,4 @@ The config file can be created automatically, and you can edit it yourself.
 
 
 
-
-(* Last update: 2018.09.10)
+(* Last update: 2018.10.22)
