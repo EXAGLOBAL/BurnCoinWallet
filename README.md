@@ -12,7 +12,7 @@ Dependent libraries: Boost, BDB, OpenSSL, MINIUPNPC, QRENCODE
 
 
 You can find BurnCoind file in the same directory.
-Copy it wherever you want. e.g, 'copy BurnCoind /usr/bin/'
+Copy it to wherever you want. e.g, 'cp BurnCoind /usr/bin/'
 
 ## 3. Build - Windows QT
 You can build it with QT. As one example, 
